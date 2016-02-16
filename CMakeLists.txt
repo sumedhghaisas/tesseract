@@ -127,6 +127,9 @@ configure_file(
 configure_file(
     ${CMAKE_SOURCE_DIR}/cmake/templates/TesseractConfig.cmake.in
     ${CMAKE_BINARY_DIR}/TesseractConfig.cmake @ONLY)
+    
+set(version_config "${CMAKE_BINARY_DIR}/TesseractConfig-version.cmake")
+set(project_config "${CMAKE_BINARY_DIR}/TesseractConfig.cmake")   
 
 ###############################################################################
 #
@@ -243,3 +246,39 @@ set_target_properties           (tesseractmain PROPERTIES OUTPUT_NAME tesseract)
 add_subdirectory(training)
 
 ###############################################################################
+
+###############################################################################
+#
+# install
+#
+###############################################################################
+
+set(targets_export_name "${PROJECT_NAME}Targets")
+set(include_install_dir "include")
+set(config_install_dir "lib/cmake/${PROJECT_NAME}")
+set(namespace "${PROJECT_NAME}::")
+
+install(
+    TARGETS tesseract
+    EXPORT "${targets_export_name}"
+    LIBRARY DESTINATION "lib"
+    ARCHIVE DESTINATION "lib"
+    RUNTIME DESTINATION "bin"
+    INCLUDES DESTINATION "${include_install_dir}"
+)
+
+install(
+    FILES ${tesseract_hdr}
+    DESTINATION "${include_install_dir}"
+)
+
+install(
+    FILES "${project_config}" "${version_config}"
+    DESTINATION "${config_install_dir}"
+)
+
+install(
+    EXPORT "${targets_export_name}"
+    NAMESPACE "${namespace}"
+    DESTINATION "${config_install_dir}"
+)
