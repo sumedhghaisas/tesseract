@@ -55,10 +55,8 @@ set(MINIMUM_LEPTONICA_VERSION 1.71)
 
 if(BUILD_WITH_LEPTONICA)
   hunter_add_package(leptonica)
+  set(Leptonica_DIR ${LEPTONICA_ROOT})
 endif()
-
-message(${LEPTONICA_ROOT})
-set(Leptonica_DIR ON)
 
 if (NOT Leptonica_DIR AND NOT MSVC)
 find_package(PkgConfig REQUIRED)
@@ -145,6 +143,7 @@ add_definitions(-D_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1)
 add_definitions(-DUSE_STD_NAMESPACE=1)
 add_definitions(-DWINDLLNAME="libtesseract${VERSION_MAJOR}${VERSION_MINOR}.dll")
 
+message(${Leptonica_INCLUDE_DIRS})
 include_directories(${Leptonica_INCLUDE_DIRS})
 
 include_directories(${CMAKE_BINARY_DIR})
@@ -218,7 +217,8 @@ add_library                     (tesseract ${LIBRARY_TYPE} ${tesseract_src} ${te
 if (NOT STATIC)
 target_compile_definitions      (tesseract PUBLIC -DTESS_EXPORTS)
 endif()
-target_link_libraries           (tesseract ${Leptonica_LIBRARIES} ${LIB_Ws2_32} ${LIB_pthread})
+target_link_libraries(tesseract leptonica::leptonica)
+target_link_libraries           (tesseract ${LIB_Ws2_32} ${LIB_pthread})
 set_target_properties           (tesseract PROPERTIES VERSION ${VERSION_MAJOR}.${VERSION_MINOR_0}.${VERSION_MINOR_1})
 set_target_properties           (tesseract PROPERTIES SOVERSION ${VERSION_MAJOR}.${VERSION_MINOR_0}.${VERSION_MINOR_1})
 if (WIN32)
