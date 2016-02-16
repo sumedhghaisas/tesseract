@@ -10,6 +10,13 @@
 
 cmake_minimum_required(VERSION 2.8.11)
 
+include("cmake/HunterGate.cmake")
+
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.12.22.tar.gz"
+    SHA1 "868408f1f3d8deeaab13f4ebca28b02ec2dfcade"
+)
+
 # In-source builds are disabled.
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR
@@ -45,6 +52,10 @@ set(VERSION_MINOR 05)
 set(VERSION_PLAIN ${VERSION_MAJOR}.${VERSION_MINOR})
 
 set(MINIMUM_LEPTONICA_VERSION 1.71)
+
+if(BUILD_WITH_LEPTONICA)
+  hunter_add_package(leptonica)
+endif()
 
 if (NOT Leptonica_DIR AND NOT MSVC)
 find_package(PkgConfig REQUIRED)
