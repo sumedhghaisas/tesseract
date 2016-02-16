@@ -57,6 +57,9 @@ if(BUILD_WITH_LEPTONICA)
   hunter_add_package(leptonica)
 endif()
 
+message(${LEPTONICA_ROOT})
+set(Leptonica_DIR ON)
+
 if (NOT Leptonica_DIR AND NOT MSVC)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(Leptonica REQUIRED lept)
