@@ -269,7 +269,7 @@ install(
 
 install(
     FILES ${tesseract_hdr}
-    DESTINATION "${include_install_dir}"
+    DESTINATION "${include_install_dir}/tesseract/"
 )
 
 install(
