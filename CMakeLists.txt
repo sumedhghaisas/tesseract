@@ -213,7 +213,7 @@ set(tesseract_src ${tesseract_src}
     api/pdfrenderer.cpp
 )
 
-add_library                     (tesseract ${LIBRARY_TYPE} ${tesseract_src} ${tesseract_hdr})
+add_library                     (tesseract ${tesseract_src} ${tesseract_hdr})
 if (NOT STATIC)
 target_compile_definitions      (tesseract PUBLIC -DTESS_EXPORTS)
 endif()
