@@ -121,13 +121,13 @@ set(INCLUDE_DIR
 
 configure_file(
     ${CMAKE_SOURCE_DIR}/cmake/templates/TesseractConfig-version.cmake.in
-    ${CMAKE_BINARY_DIR}/TesseractConfig-version.cmake @ONLY)
+    ${CMAKE_BINARY_DIR}/tesseractConfig-version.cmake @ONLY)
 configure_file(
     ${CMAKE_SOURCE_DIR}/cmake/templates/TesseractConfig.cmake.in
-    ${CMAKE_BINARY_DIR}/TesseractConfig.cmake @ONLY)
+    ${CMAKE_BINARY_DIR}/tesseractConfig.cmake @ONLY)
     
-set(version_config "${CMAKE_BINARY_DIR}/TesseractConfig-version.cmake")
-set(project_config "${CMAKE_BINARY_DIR}/TesseractConfig.cmake")   
+set(version_config "${CMAKE_BINARY_DIR}/tesseractConfig-version.cmake")
+set(project_config "${CMAKE_BINARY_DIR}/tesseractConfig.cmake")   
 
 ###############################################################################
 #
