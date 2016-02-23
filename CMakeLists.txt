@@ -117,6 +117,7 @@ set(INCLUDE_DIR
     ${CMAKE_SOURCE_DIR}/ccmain
     ${CMAKE_SOURCE_DIR}/ccstruct
     ${CMAKE_SOURCE_DIR}/ccutil
+    ${CMAKE_INSTALL_PREFIX}/include
 )
 
 configure_file(
