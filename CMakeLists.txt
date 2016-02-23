@@ -62,7 +62,7 @@ if (NOT Leptonica_DIR AND NOT MSVC)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(Leptonica REQUIRED lept)
 else()
-find_package(Leptonica ${MINIMUM_LEPTONICA_VERSION} REQUIRED CONFIG)
+find_package(leptonica ${MINIMUM_LEPTONICA_VERSION} REQUIRED CONFIG)
 endif()
 
 find_package(OpenCL QUIET)
